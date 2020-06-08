@@ -104,7 +104,6 @@ footer {
   }
   .header__wrap .header__nav {
     width: 35%;
-    visibility: hidden;
     position: absolute;
     background-color: #f0f0f0;
     right: 15%;
@@ -994,7 +993,6 @@ footer {
   }
   .header__nav {
     width: 49.72727%;
-    visibility: visible;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1070,7 +1068,7 @@ footer {
     width: 85.72474%;
     margin: 0 auto;
   }
-  .featured__wrap + .wrap_slider {
+  .featured__wrap > .wrap_slider {
     display: none;
   }
   .featured__wrap #btn,

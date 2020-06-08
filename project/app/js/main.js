@@ -1,33 +1,44 @@
 
 ////////////////////////////////////////мобильное меню
+ //$(function() {
+  let headerNav = $('#header-nav')
+  let header_menu = $('#header-menu')[0]
+  let bool = true
 
-let header_nav = document.getElementById("header-nav")
-let header_menu = document.getElementById("header-menu")
-let bool = true
+  if ($('.header__menu').css('display') == "flex") {
+    headerNav.hide()
+  }
 
-let visible_menu = function() {
-    if(bool) {
-        header_nav.style.visibility = "visible"
-        bool = false
-    } else {
-        header_nav.style.visibility = "hidden"
-        bool = true
-    }
-}
+  let visible_menu = function() {
+      if(bool) {
+          
+          headerNav.show(500)
+          bool = false
+      } else {
+          headerNav.hide(500)
+          bool = true
+      }
+  }
+
+  header_menu.addEventListener('click', visible_menu)
+//})
+
+
+
 
 ////////////////////////////////////////мобильные слайдеры
 
 let sliderMobile = {
   slidesObj: {
-    slides_featured: document.getElementById("featured_catalog"),
-    slides_trending: document.getElementById("trending_catalog")
+    slides_featured: $('#featured_catalog')[0],
+    slides_trending: $('#trending_catalog')[0]
   },
   
   counterObj: {
     counter_featured: 1,
     counter_trending: 1
   },
-  img: document.getElementsByClassName("featured__figure"),
+  img: $('.featured__figure'),
   
   stepObj: {
     step_featured: 0,
@@ -89,14 +100,14 @@ let sliderMobile = {
 ////////////////////////////////////////остальные слайдеры
 let idArr= [0, 1, 2]
 
-let slidesExclusive = document.getElementsByClassName("exclusive__item"),
-  slidesHeader = document.getElementsByClassName("header__slide"),
-  slidesHotdeal = document.getElementsByClassName("hotdeal__slide")
+let slidesExclusive = $('.exclusive__item'),
+  slidesHeader = $('.header__slide'),
+  slidesHotdeal = $('.hotdeal__slide')
 let slidesArr = [slidesExclusive, slidesHeader, slidesHotdeal]
 
-let pagExclusive = document.getElementsByClassName("exclusive__pag"),
-  pagHeader = document.getElementsByClassName("header__pag"),
-  pagHotdeal = document.getElementsByClassName("hotdeal__pag")
+let pagExclusive = $('.exclusive__pag'),
+  pagHeader = $('.header__pag'),
+  pagHotdeal = $('.hotdeal__pag')
 let pagArr = [pagExclusive, pagHeader, pagHotdeal]
 
 let indexExclusive = 1,
@@ -167,8 +178,8 @@ let showSlides = function(id, item, paggination, index) {
 }
 
 ////////////////////////////////////////featured__nav переключение между featured__navitem
-let arrNavItem = document.getElementsByClassName('featured__navitem')
-let arrNavStick = document.getElementsByClassName('featured__stick')
+let arrNavItem = $('.featured__navitem')
+let arrNavStick = $('.featured__stick')
 
 let NavItemActive = function(n) {
   arrNavItem[n].style.color = "#212121"
@@ -182,5 +193,5 @@ let NavItemActive = function(n) {
   }
 }
 
-header_menu.addEventListener('click', visible_menu)
+
 

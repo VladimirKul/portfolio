@@ -270,7 +270,6 @@ footer {
 
     .header__nav {
       width: 35%;
-      visibility: hidden;
       position: absolute;
       background-color: #f0f0f0;
       right: 15%;
@@ -976,7 +975,6 @@ footer {
 
   .header__nav {
     width: ((547/1100) * 100%);
-    visibility: visible;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1061,7 +1059,7 @@ footer {
     width: ((1171/1366) * 100%);
     margin: 0 auto;
 
-    + .wrap_slider {
+    > .wrap_slider {
       display: none;
     }
 
