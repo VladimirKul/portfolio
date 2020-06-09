@@ -11,7 +11,6 @@
 
   let visible_menu = function() {
       if(bool) {
-          
           headerNav.show(500)
           bool = false
       } else {
@@ -22,9 +21,6 @@
 
   header_menu.addEventListener('click', visible_menu)
 //})
-
-
-
 
 ////////////////////////////////////////мобильные слайдеры
 
@@ -94,9 +90,6 @@ let sliderMobile = {
   }
 }
 
-
-
-
 ////////////////////////////////////////остальные слайдеры
 let idArr= [0, 1, 2]
 
@@ -162,17 +155,11 @@ let showSlides = function(id, item, paggination, index) {
     index = 1
   }
 
-  for(i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none"
-  }
+  slides.fadeOut(0)
+  $(slides[index - 1]).fadeIn(500)
 
-  for(i = 0; i < pag.length; i++) {
-    pag[i].className = pag[i].className.replace("active", "")
-  }
-
-  slides[index - 1].style.display = "block"
-  pag[index - 1].className += " active"
-
+  pag.removeClass('active')
+  $(pag[index - 1]).addClass('active')
 
   slidersArr[id].index = index
 }
@@ -180,15 +167,16 @@ let showSlides = function(id, item, paggination, index) {
 ////////////////////////////////////////featured__nav переключение между featured__navitem
 let arrNavItem = $('.featured__navitem')
 let arrNavStick = $('.featured__stick')
+$(arrNavStick[1]).hide()
 
 let NavItemActive = function(n) {
-  arrNavItem[n].style.color = "#212121"
-  arrNavStick[n].style.visibility = "visible"
+  $(arrNavItem[n]).css('color', '#212121')
+  $(arrNavStick[n]).show(500)
 
   for(let i = 0; i < arrNavItem.length; i++) {
     if(arrNavItem[i] != arrNavItem[n]) {
-      arrNavItem[i].style.color = "#6c6c6c"
-      arrNavStick[i].style.visibility = "hidden"
+      $(arrNavItem[i]).css('color', '#6c6c6c')
+      $(arrNavStick[i]).hide(500)
     }
   }
 }

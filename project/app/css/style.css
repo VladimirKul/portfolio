@@ -225,7 +225,6 @@ footer {
   }
   .featured__wrap .featured__navwrap > div > div:nth-child(2) > div {
     width: 100%;
-    visibility: hidden;
   }
   .featured__wrap .featured__all {
     margin-top: 20px;
@@ -1068,9 +1067,6 @@ footer {
     width: 85.72474%;
     margin: 0 auto;
   }
-  .featured__wrap > .wrap_slider {
-    display: none;
-  }
   .featured__wrap #btn,
   .featured__wrap #btn1 {
     display: none;
@@ -1141,7 +1137,6 @@ footer {
   }
   .featured__wrap .featured__navwrap > div > div:nth-child(2) > div {
     width: 130%;
-    visibility: hidden;
   }
   .featured__wrap .featured__all {
     margin-top: 20px;
