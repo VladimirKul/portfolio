@@ -42,10 +42,17 @@ class Casino {
 		let resTime = 300 * numRepet; //время, спустя которое все ячейки будут удалены, кроме последних результатов
         setTimeout(time, resTime);
         setTimeout(otherFun.fillCellNum, resTime);
-        setTimeout(otherFun.getRes, resTime);
+		setTimeout(otherFun.getRes, resTime);
+		setTimeout(otherFun.actBtn, resTime);
 	};
 
 	_init = function() {
+		$('.btn').css({
+			'webkit-box-shadow': 'none',
+			'-moz-box-shadow': 'none',
+			'box-shadow': 'none'
+		})
+		otherFun.disBtn()
 		let numRepet = this.genCells(); //случайное число - кол-во вращений и генерация новых ячеек для вращений
         let rotationTime = 250 * numRepet; //время вращений
         
@@ -82,12 +89,68 @@ let otherFun = {
         }
         if(score == 3) {
             obj.winOrLose = true
-            $('.text').text('Вы выиграли!')
+			$('.text').fadeOut(200).fadeIn(200).text('Вы выиграли!')
+			otherFun.getGreenShadow()
         } else {
             obj.winOrLose = false
-            $('.text').text('Вы проиграли!')
-        }
-    },
+			$('.text').fadeOut(200).fadeIn(200).text('Вы проиграли!')
+			otherFun.getRedShadow()
+		}
+	},
+
+	getRedShadow: function() {
+		$('.btn').css({
+			'webkit-box-shadow': '0px 0px 30px 15px rgba(255, 0, 0, 1)',
+			'-moz-box-shadow': '0px 0px 30px 15px rgba(255, 0, 0, 1)',
+			'box-shadow': '0px 0px 30px 15px rgba(255, 0, 0, 1)'
+		})
+
+		$(btn).hover(function() {	
+			$(btn).css({
+				'webkit-box-shadow': '0px 0px 30px 15px rgba(255, 0, 0, 1)',
+				'-moz-box-shadow': '0px 0px 30px 15px rgba(255, 0, 0, 1)',
+				'box-shadow': '0px 0px 30px 15px rgba(255, 0, 0, 1)'
+			})
+			}, function() {	
+			$(btn).css({
+				'webkit-box-shadow': 'none',
+				'-moz-box-shadow': 'none',
+				'box-shadow': 'none'
+			})
+		})
+	},
+
+	getGreenShadow: function() {
+		$('.btn').css({
+			'webkit-box-shadow': '0px 0px 30px 15px rgba(0, 255, 0, 1)',
+			'-moz-box-shadow': '0px 0px 30px 15px rgba(0, 255, 0, 1)',
+			'box-shadow': '0px 0px 30px 15px rgba(0, 255, 0, 1)'
+		})
+
+		$(btn).hover(function() {	
+			$(btn).css({
+				'webkit-box-shadow': '0px 0px 30px 15px rgba(0, 255, 0, 1)',
+				'-moz-box-shadow': '0px 0px 30px 15px rgba(0, 255, 0, 1)',
+				'box-shadow': '0px 0px 30px 15px rgba(0, 255, 0, 1)'
+			})
+			}, function() {	
+			$(btn).css({
+				'webkit-box-shadow': 'none',
+				'-moz-box-shadow': 'none',
+				'box-shadow': 'none'
+			})
+		})
+	},
+	
+	disBtn: function() {
+		$(btn).attr('disabled', true)
+		$(btn).fadeTo(0, 0.4)
+	},
+
+	actBtn: function() {
+		$(btn).attr('disabled', false)
+		$(btn).fadeTo(0, 1)
+	},
 
 	/////ф-ция случайного числа для случайной картинки
 	random: function() {
