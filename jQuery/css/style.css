@@ -1,3 +1,7 @@
+@font-face {
+    font-family: Simpsonfont;
+    src: url(../font/Simpsonfont.otf);
+}
 * {
     margin: 0;
     padding: 0;
@@ -7,13 +11,15 @@ body {
     background-image: url(../img/bg.png);
     background-size: cover;
     background-repeat: no-repeat;
+    font-family: Simpsonfont;
+    color: yellow;
 }
 
 .wrap {
     width: 35%;
     height: 150px;
     margin: 0 auto;
-    margin-top: 20%;
+    margin-top: 18%;
     overflow: hidden;
     position: relative;
     display: flex;
@@ -40,18 +46,27 @@ body {
     width: 20%;
     margin: 0 auto;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 40px;
-    margin-bottom: 40px;
 }
 
 .wrap_panel2 {
-    width: 35%;
+    width: 55%;
+    height: 2em;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    margin-top: 5%;
+    margin-top: 3%;
+    font-size: 2em;
+}
+
+.wrap_panel2 > p:first-child {
+    width: 35%;
+}
+
+.wrap_panel2 > p:last-child {
+    width: 25%;
 }
 
 .btn {
@@ -74,9 +89,31 @@ body {
     -webkit-box-shadow: 0px 0px 30px 15px rgba(255, 0, 0, 1);
     -moz-box-shadow: 0px 0px 30px 15px rgba(255, 0, 0, 1);
     box-shadow: 0px 0px 30px 15px rgba(255, 0, 0, 1);
+    cursor: grab;
 }
 
 .btn:active {
     width: 75px;
     height: 75px;
+}
+
+.text {
+    height: 40px;
+    text-align: center;
+    font-size: 1.25em;
+    margin-top: 50px;
+    margin-bottom: 40px;
+}
+
+.fing_block {
+    width: 120px;
+    height: 140px;
+    background-image: url(../img/fing.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#cash {
+    color: yellow;
+    text-align: center;
 }

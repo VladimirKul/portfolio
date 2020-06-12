@@ -52,6 +52,12 @@ class Casino {
 			'-moz-box-shadow': 'none',
 			'box-shadow': 'none'
 		})
+		$('.wrap').css({
+			'webkit-box-shadow': 'none',
+			'-moz-box-shadow': 'none',
+			'box-shadow': 'none'
+		})
+		$('#win').text('')
 		otherFun.disBtn()
 		let numRepet = this.genCells(); //случайное число - кол-во вращений и генерация новых ячеек для вращений
         let rotationTime = 250 * numRepet; //время вращений
@@ -87,32 +93,34 @@ let otherFun = {
                 score--
             }
         }
-        if(score == 3) {
+        if(score == 4) {
             obj.winOrLose = true
 			$('.text').fadeOut(200).fadeIn(200).text('Вы выиграли!')
-			otherFun.getGreenShadow()
+			otherFun.getGreenShadow($('.btn'))
+			otherFun.calcRes(true)
         } else {
             obj.winOrLose = false
 			$('.text').fadeOut(200).fadeIn(200).text('Вы проиграли!')
-			otherFun.getRedShadow()
+			otherFun.getRedShadow($('.btn'))
+			otherFun.calcRes(false)
 		}
 	},
 
-	getRedShadow: function() {
-		$('.btn').css({
+	getRedShadow: function(val) {
+		$(val).css({
 			'webkit-box-shadow': '0px 0px 30px 15px rgba(255, 0, 0, 1)',
 			'-moz-box-shadow': '0px 0px 30px 15px rgba(255, 0, 0, 1)',
 			'box-shadow': '0px 0px 30px 15px rgba(255, 0, 0, 1)'
 		})
 
-		$(btn).hover(function() {	
-			$(btn).css({
+		$(val).hover(function() {	
+			$(val).css({
 				'webkit-box-shadow': '0px 0px 30px 15px rgba(255, 0, 0, 1)',
 				'-moz-box-shadow': '0px 0px 30px 15px rgba(255, 0, 0, 1)',
 				'box-shadow': '0px 0px 30px 15px rgba(255, 0, 0, 1)'
 			})
 			}, function() {	
-			$(btn).css({
+			$(val).css({
 				'webkit-box-shadow': 'none',
 				'-moz-box-shadow': 'none',
 				'box-shadow': 'none'
@@ -120,21 +128,21 @@ let otherFun = {
 		})
 	},
 
-	getGreenShadow: function() {
-		$('.btn').css({
+	getGreenShadow: function(val) {
+		$(val).css({
 			'webkit-box-shadow': '0px 0px 30px 15px rgba(0, 255, 0, 1)',
 			'-moz-box-shadow': '0px 0px 30px 15px rgba(0, 255, 0, 1)',
 			'box-shadow': '0px 0px 30px 15px rgba(0, 255, 0, 1)'
 		})
 
-		$(btn).hover(function() {	
-			$(btn).css({
+		$(val).hover(function() {	
+			$(val).css({
 				'webkit-box-shadow': '0px 0px 30px 15px rgba(0, 255, 0, 1)',
 				'-moz-box-shadow': '0px 0px 30px 15px rgba(0, 255, 0, 1)',
 				'box-shadow': '0px 0px 30px 15px rgba(0, 255, 0, 1)'
 			})
 			}, function() {	
-			$(btn).css({
+			$(val).css({
 				'webkit-box-shadow': 'none',
 				'-moz-box-shadow': 'none',
 				'box-shadow': 'none'
@@ -155,8 +163,56 @@ let otherFun = {
 	/////ф-ция случайного числа для случайной картинки
 	random: function() {
 		return Math.floor(Math.random() * 3) + 1;
+	},
+
+	initData: function() {
+		$('#cash').text(' 10000')
+		$('#rate').text(' 100')
+	},
+
+	calcRes: function(val) {
+		let cash = +($('#cash').text())
+		let rate = +($('#rate').text())
+		if(val) {
+			otherFun.winAnimation('#win')
+			otherFun.winAnimation('#cash')
+			otherFun.winAnimation('.text')
+			otherFun.getGreenShadow('.wrap')
+
+			cash += rate
+			$('#win').text(rate)
+		} else {
+			otherFun.loseAnimation('#cash')
+			otherFun.getRedShadow('.wrap')
+			cash -= rate
+		}
+
+		$('#cash').text(cash)
+		$('#rate').text(rate)
+	},
+
+	winAnimation: function(val) {
+		$(val).animate({
+			'fontSize': '1.5em',
+		}, 250, 'swing', function() {
+			$(this).animate({
+				'fontSize': '1em',
+			}, 250)
+		})
+	},
+
+	loseAnimation: function(val) {
+		$(val).animate({
+			'fontSize': '0.5em',
+		}, 250, 'swing', function() {
+			$(this).animate({
+				'fontSize': '1em',
+			}, 250)
+		})
 	}
 };
+
+otherFun.initData()
 
 $('.btn').click(function() {
 	obj._init();
