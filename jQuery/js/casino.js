@@ -210,6 +210,14 @@ let otherFun = {
 				'fontSize': '1em',
 			}, 250)
 		})
+	},
+
+	animateSelectRate: function () {
+		if($('.select_rate').css('display') == 'none') {
+			$('.select_rate').slideDown(700)
+		} else {
+			$('.select_rate').slideUp(700)
+		}
 	}
 };
 
@@ -218,3 +226,10 @@ otherFun.initData()
 $('.btn').click(function() {
 	obj._init();
 });
+
+$('.wrap_select').click(otherFun.animateSelectRate)
+
+$('.select_rate').click(function() {
+    let a = $(this).text()
+    $('#rate').text(a)
+})
