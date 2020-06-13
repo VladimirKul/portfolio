@@ -92,7 +92,8 @@ let otherFun = {
             } else {
                 score--
             }
-        }
+		}
+
         if(score == wrapSlide.length) {
             obj.winOrLose = true
 			$('.text').fadeOut(200).fadeIn(200).text('Вы выиграли!')
