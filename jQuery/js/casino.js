@@ -1,3 +1,5 @@
+
+$(function() {
 let btn = $('.btn');
 let cell = $('.cell');
 let wrapSlide = $('.wrapslid');
@@ -241,4 +243,6 @@ $('.wrap_select').click(otherFun.animateSelectRate)
 $('.select_rate').click(function() {
     let a = $(this).text()
     $('#rate').text(a)
+})
+
 })
