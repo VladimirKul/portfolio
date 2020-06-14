@@ -7,13 +7,14 @@
     src: url(../font/Simpsonfont.otf);
 }
 
-@media(min-width: 320px) {
+@media(min-width: 340px) {
     * {
         margin: 0;
         padding: 0;
     }
 
     body {
+        height: 100vh;
         background-color: #93d4f5;
         background-image: url(../img/bg.png);
         background-repeat: no-repeat;
@@ -22,8 +23,30 @@
         background-size: contain;
     }
 
+    .message {
+        text-align: center;
+        margin-top: 10%;
+    }
+
+    .main {
+        display: none;
+    }
+}
+
+@media(min-width: 600px) {
+    body{
+        height: auto;
+    }
+    .message {
+        display: none;
+    }
+
+    .main {
+        display: block;
+    }
+
     .wrap {
-        width: 55%;
+        width: 87%;
         height: 150px;
         margin: 0 auto;
         margin-top: 5%;
@@ -57,12 +80,12 @@
     }
 
     .wrap_panel1 {
-        width: 37%;
+        width: 85%;
         height: 75px;
         margin: 0 auto;
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        font-size: 1.7em;
     }
 
     .wrap_panel1 > p {
@@ -78,6 +101,7 @@
         justify-content: space-between;
         margin-top: 3%;
         font-size: 2em;
+        display: none;
     }
     
     .wrap_panel2 > p:first-child {
@@ -118,8 +142,8 @@
         height: 4vh;
         text-align: center;
         font-size: 1.25em;
-        margin-top: 5vh;
-        margin-bottom: 4vh;
+        margin-top: 2.5vh;
+        margin-bottom: 2vh;
     }
         
     #cash {
@@ -144,20 +168,54 @@
     .select_rate:hover {
         cursor: pointer;
     }
-}
 
-@media(min-width: 799px) {
-    .wrap {
-        width: 70%;
-        margin-top: 10%;
+    .wrap_left {
+        display: block;
+        width: 25%;
     }
+
 }
 
-@media(min-width: 1099px) {
+@media(min-width: 641px) { 
     body {
         background-size: cover;
     }
+}
 
+@media(min-width: 801px) {
+    .wrap {
+        width: 70%;
+        margin-top: 5%;
+    }
+
+    .wrap_panel2 {
+        display: flex;
+    }
+
+    .wrap_panel1 {
+        width: 55%;
+    }
+
+    .wrap_left {
+        width: 30%;
+    }
+
+    .wrap_left > p:nth-child(2) {
+        display: none;
+    }
+
+
+    .wrap_right > p {
+        display: none;
+    }
+
+    .text {
+        margin-top: 5vh;
+        margin-bottom: 4vh;
+    }
+}
+
+@media(min-width: 1101px) {
     .wrap {
         width: 50%;
     }
@@ -177,7 +235,7 @@
     }
 }
 
-@media(min-width: 1499px) {
+@media(min-width: 1501px) {
     .wrap {
         width: 35%;
     }

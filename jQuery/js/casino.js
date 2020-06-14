@@ -169,14 +169,20 @@ let otherFun = {
 	initData: function() {
 		$('#cash').text(' 10000')
 		$('#rate').text(' 100')
+
+		$('#cash_mobile').text(' 10000')
+		$('#rate_mobile').text(' 100')
 	},
 
 	calcRes: function(val) {
 		let cash = +($('#cash').text())
 		let rate = +($('#rate').text())
+		// let cash = +($('#cash_mobile').text())
+		// let rate = +($('#rate_mobile').text())
 		if(val) {
 			otherFun.winAnimation('#win')
 			otherFun.winAnimation('#cash')
+			otherFun.winAnimation('#cash_mobile')
 			otherFun.winAnimation('.text')
 			otherFun.getGreenShadow('.wrap')
 
@@ -184,12 +190,15 @@ let otherFun = {
 			$('#win').text(rate)
 		} else {
 			otherFun.loseAnimation('#cash')
+			otherFun.loseAnimation('#cash_mobile')
 			otherFun.getRedShadow('.wrap')
 			cash -= rate
 		}
 
 		$('#cash').text(cash)
 		$('#rate').text(rate)
+		$('#cash_mobile').text(cash)
+		$('#rate_mobile').text(rate)
 	},
 
 	winAnimation: function(val) {
