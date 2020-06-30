@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "title": "Apple MacBook Pro 16",
+    "price": 222900,
+    "img": "macbook-pro.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Apple MacBook Air 13",
+    "price": 114900,
+    "img": "macbook-air.jpg" 
+  },
+  {
+    "id": 3,
+    "title": "Apple iMac 27",
+    "price": 199900,
+    "img": "imac.jpg"
+  },
+  {
+    "id": 4,
+    "title": "Apple iMac Pro",
+    "price": 399900,
+    "img": "imac-pro.jpg"
+  },
+  {
+    "id": 5,
+    "title": "Apple Mac mini",
+    "price": 102900,
+    "img": "mac-mini.jpg"
+  },
+  {
+    "id": 6,
+    "title": "Apple Mac Pro",
+    "price": 349900,
+    "img": "mac-pro.jpg"
+  }
+]
