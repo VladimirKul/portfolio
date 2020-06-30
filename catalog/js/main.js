@@ -112,17 +112,28 @@ class CartList extends List {
                 item.innerHTML = `Кол-во: ${find.quantity}`
             })
         }
+        this.clear()
         this.render()
     }
 
-    render() {
+    removeProduct (product) {
+        let productId= +product.dataset['id']
+        let find =this.DTOarr.find (element => element.id === productId)
+    
+        if(find.quantity > 1) {
+            find.quantity--
+        } else {
+            console.log(productId)
+            this.DTOarr.splice(this.DTOarr.indexOf(find), 1)
+            document.querySelector(`.header__cartItem[data-id="${productId}"]`).remove()
+        }
+        this.clear()
+        this.render()
+    }
+
+    clear() {
         const block = document.querySelector(this.container)
         block.innerHTML = ''
-        this.DTOarr.forEach(el => {
-            let item = new lists[this.constructor.name](el)
-            this.items.push(item)
-            block.insertAdjacentHTML('beforeend', item.render())
-        })
     }
 }
 
@@ -135,7 +146,7 @@ class CartItem extends ListItem{
     }
 
     render() {
-        return ` <div class="header__cartItem">
+        return ` <div class="header__cartItem" data-id="${this.id}">
                     <div class="header__blockimg">
                         <img src="img/${this.img}" alt="img" class="header__img">
                     </div>
@@ -150,7 +161,7 @@ class CartItem extends ListItem{
                         data-img="${this.img}">
                         +
                     </button>
-                    <button class="header__btn"
+                    <button class="header__btn" onclick="cart.removeProduct(this)"
                         data-id="${this.id}"
                         data-title="${this.title}"
                         data-price="${this.price}"
@@ -175,24 +186,6 @@ let activeCart = function() {
         cartWrap.style.visibility = "visible"
     }
 }
-
-// function addProduct (product) {
-//     let productId= + product.dataset['id']
-//     let find = userCart.find (element => element.id === productId)
-
-//     if(!find) {
-//         userCart.push ({
-//             name: product.dataset['name'],
-//             id: productId,
-//             img: product.dataset['img'],
-//             price: +product.dataset['prce'],
-//             quantity: 1
-//         })
-//     } else {
-//         find.quantity++
-//     }
-//     renderCart()
-// }
 
 function removeProduct (product) {
     let productId= + product.dataset['id']
