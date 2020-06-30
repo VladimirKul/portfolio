@@ -106,13 +106,23 @@ class CartList extends List {
                 quantity: 1
             }
             this.DTOarr.push (new lists[this.constructor.name](el))
-            this.render()
         } else {
             find.quantity++
             document.querySelectorAll('.header__quantity').forEach(item => {
                 item.innerHTML = `Кол-во: ${find.quantity}`
             })
         }
+        this.render()
+    }
+
+    render() {
+        const block = document.querySelector(this.container)
+        block.innerHTML = ''
+        this.DTOarr.forEach(el => {
+            let item = new lists[this.constructor.name](el)
+            this.items.push(item)
+            block.insertAdjacentHTML('beforeend', item.render())
+        })
     }
 }
 
@@ -166,23 +176,23 @@ let activeCart = function() {
     }
 }
 
-function addProduct (product) {
-    let productId= + product.dataset['id']
-    let find = userCart.find (element => element.id === productId)
+// function addProduct (product) {
+//     let productId= + product.dataset['id']
+//     let find = userCart.find (element => element.id === productId)
 
-    if(!find) {
-        userCart.push ({
-            name: product.dataset['name'],
-            id: productId,
-            img: product.dataset['img'],
-            price: +product.dataset['prce'],
-            quantity: 1
-        })
-    } else {
-        find.quantity++
-    }
-    renderCart()
-}
+//     if(!find) {
+//         userCart.push ({
+//             name: product.dataset['name'],
+//             id: productId,
+//             img: product.dataset['img'],
+//             price: +product.dataset['prce'],
+//             quantity: 1
+//         })
+//     } else {
+//         find.quantity++
+//     }
+//     renderCart()
+// }
 
 function removeProduct (product) {
     let productId= + product.dataset['id']
