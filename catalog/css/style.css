@@ -107,6 +107,10 @@ nav {
     box-sizing: border-box;
 }
 
+.active_cart {
+    visibility: visible;
+}
+
 .header__blockimg {
     width: 150px;
     margin: 0 auto;
