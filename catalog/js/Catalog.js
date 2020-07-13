@@ -11,23 +11,6 @@ Vue.component('catalog', {
             this.$parent.getJSON(this.catalogUrl)
                 .then(data => { this.items = data })
         },
-
-        addProduct (itemProduct) {
-            let productId = itemProduct.id
-            let find = this.$parent.cart.find (element => element.id === productId)
-            if(!find) {
-                let el = {
-                    title: itemProduct.title,
-                    price: itemProduct.price,
-                    id: productId,
-                    img: itemProduct.img,
-                    quantity: 1
-                }
-                this.$parent.cart.push (el)
-            } else {
-                find.quantity++
-            }
-        },
     },
 
     mounted() {

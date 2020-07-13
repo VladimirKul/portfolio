@@ -1,48 +1,64 @@
 Vue.component('cart', {
     data() {
         return {
+            items: [],
             cartUrl: 'https://raw.githubusercontent.com/VladimirKul/catalog/master/catalog/getBasket.json',
-            
+            addAproveUrl: 'https://raw.githubusercontent.com/VladimirKul/online-store-api/master/responses/addToBasket.json',
+            delAproveUrl: 'https://raw.githubusercontent.com/VladimirKul/online-store-api/master/responses/deleteFromBasket.json',
         }
     },
 
     methods: {
         getCart() {
             this.$parent.getJSON(this.cartUrl)
-                .then(data => { this.$parent.cart = data.contents })
+                .then(data => { this.items = data.contents })
         },
 
         addProduct (itemProduct) {
-            let productId = itemProduct.id
-            let find = this.$parent.cart.find (element => element.id === productId)
-            if(!find) {
-                let el = {
-                    title: itemProduct.title,
-                    price: itemProduct.price,
-                    id: productId,
-                    img: itemProduct.img,
-                    quantity: 1
-                }
-                this.$parent.cart.push (el)
+            let find = this.items.find (item => item.id === itemProduct.id)
+
+            if(find) {
+                this.$parent.getJSON(this.addAproveUrl)
+                    .then(answer => {
+                        if(answer.result) {
+                            find.quantity++
+                        }
+                    })
             } else {
-                find.quantity++
+                let pr = Object.assign({}, itemProduct, {quantity: 1})
+                this.$parent.getJSON(this.addAproveUrl)
+                    .then(answer => {
+                        if(answer.result) {
+                            this.items.push(pr)
+                        }
+                    }) 
             }
         },
 
         removeProduct (idP) {
             let productId= idP
-            let find = this.$parent.cart.find (element => element.id === productId)
+            let find = this.items.find (element => element.id === productId)
         
             if(find.quantity > 1) {
-                find.quantity--
+                this.$parent.getJSON(this.delAproveUrl)
+                    .then(answer => {
+                        if(answer.result) {
+                            find.quantity--
+                        }
+                    })
             } else {
-                this.$parent.cart.splice(this.$parent.cart.indexOf(find), 1)
+                this.$parent.getJSON(this.delAproveUrl)
+                    .then(answer => {
+                        if(answer.result) {
+                            this.items.splice(this.items.indexOf(find), 1)
+                        }
+                    })
             }
         }
         
     },
 
     template: `<div class="header__cartWrap" :class="{ active_cart: $parent.statusActiveCart }">
-                    <cart_item v-for="item of $parent.cart" :el="item" :key="item.id"></cart_item>
+                    <cart_item v-for="item of items" :el="item" :key="item.id"></cart_item>
                 </div>`
 })

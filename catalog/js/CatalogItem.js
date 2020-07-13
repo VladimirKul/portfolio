@@ -5,7 +5,7 @@ Vue.component('catalog_item', {
                     </div>
                     <div class="catalog__title">{{ el.title }}</div>
                     <div class="catalog__price">{{ el.price }}<span> руб.</span></div>
-                    <button class="catalog__btn" @click="$parent.addProduct(el)">
+                    <button class="catalog__btn" @click="$root.$refs.cartComponent.addProduct(el)">
                         Добавить в корзину
                     </button>
                 </div>`,
