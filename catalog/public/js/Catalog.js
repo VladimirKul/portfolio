@@ -1,14 +1,14 @@
 Vue.component('catalog', {
     data() {
         return {
-            catalogUrl: '/api/catalog',
+            catalogUrl: '/catalog',
             items: []
         }
     },
 
     methods: {
         getCatalog() {
-            this.$parent.getJSON(this.catalogUrl)
+            this.$parent.getJSON('/catalog')
                 .then(data => { this.items = data })
         },
     },

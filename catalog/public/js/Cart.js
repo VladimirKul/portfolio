@@ -2,9 +2,7 @@ Vue.component('cart', {
     data() {
         return {
             items: [],
-            cartUrl: '/api/cart',
-            addAproveUrl: '/api/cart',
-            delAproveUrl: 'https://raw.githubusercontent.com/VladimirKul/online-store-api/master/responses/deleteFromBasket.json',
+            cartUrl: '/cart'
         }
     },
 
@@ -18,16 +16,15 @@ Vue.component('cart', {
             let find = this.items.find (item => item.id === itemProduct.id)
 
             if(find) {
-                // this.$parent.putJSON(this.addAproveUrl)
-                //     .then(answer => {
-                //         if(answer.result) {
-                //             find.quantity++
-                //         }
-                //     })
-                console.log('heh')
+                this.$parent.putJSON(this.cartUrl + `/${find.id}`, 1)
+                    .then(answer => {
+                        if(answer.result) {
+                            find.quantity++
+                        }
+                    })
             } else {
                 let pr = Object.assign({}, itemProduct, {quantity: 1})
-                this.$parent.postJSON(this.addAproveUrl, pr)
+                this.$parent.postJSON(this.cartUrl, pr)
                     .then(answer => {
                         if(answer.result) {
                             this.items.push(pr)
@@ -38,14 +35,14 @@ Vue.component('cart', {
 
         removeProduct (itemProduct) {       
             if(itemProduct.quantity > 1) {
-                this.$parent.getJSON(this.delAproveUrl)
+                this.$parent.putJSON(this.cartUrl + `/${itemProduct.id}`, -1)
                     .then(answer => {
                         if(answer.result) {
                             itemProduct.quantity--
                         }
                     })
             } else {
-                this.$parent.getJSON(this.delAproveUrl)
+                this.$parent.deleteJSON(this.cartUrl + `/${itemProduct.id}`)
                     .then(answer => {
                         if(answer.result) {
                             this.items.splice(this.items.indexOf(itemProduct), 1)

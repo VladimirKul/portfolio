@@ -17,14 +17,24 @@ let app = new Vue({
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(obj)
             })
+                .then (data => data.json())
         },
 
-        putJSON(url) {
-
+        putJSON(url, data) {
+            return fetch(url, {
+                method: 'PUT',
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({some: data})
+            })
+                .then (data => data.json())
         },
 
         deleteJSON(url) {
-
+            return fetch(url, {
+                method: 'DELETE',
+                headers: {"Content-Type": "application/json"},
+            })
+                .then (data => data.json())
         },
 
         activeCart() {
