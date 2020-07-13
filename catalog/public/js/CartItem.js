@@ -10,7 +10,7 @@ Vue.component('cart_item', {
                     <button class="header__btn" @click="$parent.addProduct(el)">
                         +
                     </button>
-                    <button class="header__btn"  @click="$parent.removeProduct(el.id)">
+                    <button class="header__btn"  @click="$parent.removeProduct(el)">
                         -
                     </button>
                 </div>`,

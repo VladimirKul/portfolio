@@ -2,8 +2,8 @@ Vue.component('cart', {
     data() {
         return {
             items: [],
-            cartUrl: 'https://raw.githubusercontent.com/VladimirKul/catalog/master/catalog/getBasket.json',
-            addAproveUrl: 'https://raw.githubusercontent.com/VladimirKul/online-store-api/master/responses/addToBasket.json',
+            cartUrl: '/api/cart',
+            addAproveUrl: '/api/cart',
             delAproveUrl: 'https://raw.githubusercontent.com/VladimirKul/online-store-api/master/responses/deleteFromBasket.json',
         }
     },
@@ -18,15 +18,16 @@ Vue.component('cart', {
             let find = this.items.find (item => item.id === itemProduct.id)
 
             if(find) {
-                this.$parent.getJSON(this.addAproveUrl)
-                    .then(answer => {
-                        if(answer.result) {
-                            find.quantity++
-                        }
-                    })
+                // this.$parent.putJSON(this.addAproveUrl)
+                //     .then(answer => {
+                //         if(answer.result) {
+                //             find.quantity++
+                //         }
+                //     })
+                console.log('heh')
             } else {
                 let pr = Object.assign({}, itemProduct, {quantity: 1})
-                this.$parent.getJSON(this.addAproveUrl)
+                this.$parent.postJSON(this.addAproveUrl, pr)
                     .then(answer => {
                         if(answer.result) {
                             this.items.push(pr)
@@ -35,27 +36,28 @@ Vue.component('cart', {
             }
         },
 
-        removeProduct (idP) {
-            let productId= idP
-            let find = this.items.find (element => element.id === productId)
-        
-            if(find.quantity > 1) {
+        removeProduct (itemProduct) {       
+            if(itemProduct.quantity > 1) {
                 this.$parent.getJSON(this.delAproveUrl)
                     .then(answer => {
                         if(answer.result) {
-                            find.quantity--
+                            itemProduct.quantity--
                         }
                     })
             } else {
                 this.$parent.getJSON(this.delAproveUrl)
                     .then(answer => {
                         if(answer.result) {
-                            this.items.splice(this.items.indexOf(find), 1)
+                            this.items.splice(this.items.indexOf(itemProduct), 1)
                         }
                     })
             }
         }
         
+    },
+
+    mounted() {
+        this.getCart()
     },
 
     template: `<div class="header__cartWrap" :class="{ active_cart: $parent.statusActiveCart }">

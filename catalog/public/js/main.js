@@ -11,6 +11,22 @@ let app = new Vue({
                 .then(data => data.json())
         },
 
+        postJSON(url, obj) {
+            return fetch(url, {
+                method: 'POST',
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(obj)
+            })
+        },
+
+        putJSON(url) {
+
+        },
+
+        deleteJSON(url) {
+
+        },
+
         activeCart() {
             if(this.statusActiveCart) {
                 return this.statusActiveCart = false

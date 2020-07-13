@@ -1,7 +1,7 @@
 Vue.component('catalog', {
     data() {
         return {
-            catalogUrl: 'https://raw.githubusercontent.com/VladimirKul/catalog/master/catalog/catalogData.json',
+            catalogUrl: '/api/catalog',
             items: []
         }
     },
