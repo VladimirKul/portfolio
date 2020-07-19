@@ -86,5 +86,5 @@ app.delete ('/cart/:id', (req, res) => {
 }) 
 
 app.listen (8080, () => {
-    console.log('Hi dudu')
+    console.log('server is started')
 })
